@@ -9,3 +9,9 @@ export async function getStudents() {
   }));
   return data;
 }
+
+export async function addStudents (input) {
+    await axios.post("/api/students", {
+        name: input
+    });
+}
