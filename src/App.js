@@ -1,7 +1,17 @@
+import {useState, useEffect, useRef} from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import {getStudents} from './utils'
 function App() {
+
+  const [students,setStudents] = useState([]);
+  useEffect(()=>getStudents().then(data=>setStudents(data)),[])
+
+  function renderList (arrOfObj) {
+    return arrOfObj.map(x=>(
+      <h1>{x.name}</h1>))
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +28,7 @@ function App() {
           Learn React
         </a>
       </header>
+      {renderList(students)}
     </div>
   );
 }

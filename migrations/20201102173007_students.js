@@ -4,7 +4,6 @@ exports.up = function(knex) {
         table.string('name') // this is a column.
     }) 
 };
-exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('students')
+exports.down = function(knex,promise) {
 };
 
