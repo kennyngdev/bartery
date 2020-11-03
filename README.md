@@ -2,6 +2,23 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## CREATE POST 
+## POST INCLUDES:
+    contact v
+    wanted item v
+    giving item v
+    photo
+    distance to location
+## map marker (click)
+## bootstraping (mobile-friendly)
+## database
+
+
+
+
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
