@@ -1,11 +1,11 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('UserPost').del()
+  return knex('userpost').del()
     .then(function () {
       // Inserts seed entries
-      return knex('UserPost').insert([
-        {lat: 'rowValue1' , lng: 1, name: "Miya", email: "miya9173@gmail.com" },
+      return knex('userpost').insert([
+        {lat: 35.65535, lng: 139.736869, name: "Miya", email: "miya9173@gmail.com" },
       ]);
     });
 };

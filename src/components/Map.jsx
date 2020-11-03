@@ -1,9 +1,16 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import Container from 'react-bootstrap/Container';
 
 
-const MyMapComponent = withScriptjs(withGoogleMap(({currentLocation}) =>
+const mapMarkers = (arr) => {
+  if (arr) return arr.map(x=> (<Marker position={{lat:x.lat,lng:x.lng}}/>))
+  console.log("input",arr)
+}
+
+
+const MyMapComponent = withScriptjs(withGoogleMap(({currentLocation,posts}) =>
   <GoogleMap
     defaultZoom={11}
     defaultCenter={currentLocation}
@@ -15,31 +22,28 @@ const MyMapComponent = withScriptjs(withGoogleMap(({currentLocation}) =>
       }}
     >
 <Marker position={currentLocation} />
+{mapMarkers(posts)}
   </GoogleMap>
 ))
 
 
 
 
-function Map ({currentLocation}) {
+function Map ({currentLocation, posts}) {
     const AnyReactComponent = ({ text }) => <div>{text}</div>;
     return (
         // Important! Always set the container height explicitly
   <MyMapComponent
-  loadingElement={<div style={{ height: `100%` }} />}
-  containerElement={<div style={{ height: `60vh`, width:'60%' }} />}
-  mapElement={<div style={{ height: `100%` }} />}
+  loadingElement={<Container style={{ height: `100%` }} />}
+  containerElement={<Container style={{ height: `60vh`, width:'60%' }} />}
+  mapElement={<Container style={{ height: `100%` }} />}
   currentLocation={currentLocation}
   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq63GY3R8k9pZ8p2_Am5zN6FqPi7Hc3Q0"
+  posts={posts}
 />
-
     );
     }
 
 export default Map;
 
-            // {/* <AnyReactComponent
-            //   lat={currentLocation.lat}
-            //   lng={currentLocation.lng}
-            //   text="Current Location"
-            // /> */}
+            

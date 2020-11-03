@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable("UserPost", (table) => {
+    return knex.schema.createTable("userpost", (table) => {
         table.increments().index();
         table.float("lat");
         table.float("lng");

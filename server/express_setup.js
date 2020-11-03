@@ -36,7 +36,7 @@ app.get("/api/students", async (req, res) => {
 
   app.get("/api/posts", async (req, res) => {
     try {
-      const posts = await db.select().table("UserPost");
+      const posts = await db.select().table("userpost");
       res.json(posts);
     } catch (err) {
       console.error("Error loading students!", err);
