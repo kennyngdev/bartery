@@ -7,6 +7,7 @@ const path = require("path");
 const db = require("./db_connect.js");
 const bodyParser = require('body-parser');
 const app= express();
+const methodOverride = require("method-override");
 
 
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms')
@@ -16,20 +17,27 @@ app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
   // app.use(bodyParser.urlencoded({ extended: false }));
   app.use(express.static(path.resolve(__dirname, "..", "build")));
 
-// app.use(`/api`, (req,res)=> {
-//     res.send("hi!")
-// })
+  app.use(methodOverride('_method'));
 
-
-// app.post("/api/students", async (req, res) => {
-//   db('students').insert({ name: req.body.name}).then(res.send(req.body.name));
-// });
-
+app.post("/api/students", async (req, res) => {
+  console.log(req.body)
+  db('students').insert({ name: req.body.name}).then(res.send(req.body.name));
+});
 
 app.get("/api/students", async (req, res) => {
     try {
       const students = await db.select().table("students");
       res.json(students);
+    } catch (err) {
+      console.error("Error loading students!", err);
+      res.sendStatus(500);
+    }
+  });
+
+  app.get("/api/posts", async (req, res) => {
+    try {
+      const posts = await db.select().table("UserPost");
+      res.json(posts);
     } catch (err) {
       console.error("Error loading students!", err);
       res.sendStatus(500);

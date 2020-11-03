@@ -2,11 +2,12 @@ import {useState, useEffect, useRef} from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import {getStudents } from './utils';
-// import UserInput from './components/UserInput';
+import UserInput from './components/UserInput';
 import Map from './components/Map';
 import { geolocated } from "react-geolocated";
 import location from "chrome-location"
-
+import fetch from "fetch"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
   const [students,setStudents] = useState([]);
   useEffect(()=>getStudents().then(data=>setStudents(data)),[])
   useEffect(getCurrentLocation,[]);
+
+
   function getCurrentLocation () {
     if ("geolocation" in navigator) {
       console.log("Available");
@@ -28,6 +31,7 @@ function App() {
   }
 
   function renderList (arrOfObj) {
+    console.log(students)
     return arrOfObj.map(x=>(
       <h1>{x.name}</h1>))
   }
@@ -37,8 +41,11 @@ function App() {
       <h1>kenny's site</h1>
       </header>
       <Map currentLocation={currentLocation}/>
-      {/* <UserInput students={students} setStudents={setStudents}/> */}
+      <UserInput students={students} setStudents={setStudents}/>
       {renderList(students)}
+      {/* {fetch('http://example.com/movies.json')
+      .then(response => response.json())
+      .then(data => console.log(data))} */}
     </div>
   );
 }
