@@ -11,4 +11,6 @@ exports.up = function (knex) {
   });
 };
 
-exports.down = function (knex,promise) {};
+exports.down = function (knex,promise) {
+  knex.schema.dropTable("userpost")
+};
