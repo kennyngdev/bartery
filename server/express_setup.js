@@ -1,14 +1,10 @@
 const express = require("express");
-const port = process.env.PORT || 6969;
-const knex = require("knex");
-const config = require("../knexfile.js");
 const morgan = require("morgan");
 const path = require("path");
 const db = require("./db_connect.js");
 const bodyParser = require('body-parser');
 const app = express();
 const methodOverride = require("method-override");
-const {base64_encode} = require("../src/utils/b64.js")
 
 
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
@@ -25,7 +21,7 @@ app.post("/api/students", async (req, res) => {
     name: req.body.name
   }).then(res.send(req.body.name));
 });
-
+ 
 app.post("/api/posts", async (req, res) => {
   db('userpost').insert({
     lat: req.body.lat,

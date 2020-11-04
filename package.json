@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-amplify/cli": "^4.32.0",
     "@googlemaps/js-api-loader": "^1.7.0",
     "@react-google-maps/api": "^1.13.0",
     "@testing-library/jest-dom": "^5.11.4",
@@ -28,7 +29,7 @@
     "google-map-react": "^2.1.9",
     "install": "^0.13.0",
     "js-base64": "^3.5.2",
-    "knex": "^0.21.11",
+    "knex": "^0.21.12",
     "lodash.random": "^3.2.0",
     "lodash.times": "^4.3.2",
     "mailchecker": "^3.3.16",
