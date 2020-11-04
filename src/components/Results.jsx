@@ -15,13 +15,11 @@ function Results ({currentLocation,posts, address}) {
     if (currentLocation) {
         return  posts.map((x,ind)=>
           (<Jumbotron>
-              <h3>{distFromCurrentLocation(currentLocation,x.lat,x.lng)}</h3>
-              {address.length>=1 ? (<p>{address[ind]}</p>): null }
+              <h2>{distFromCurrentLocation(currentLocation,x.lat,x.lng)}</h2> 
+              <h2>{x.name} is offering a {x.give} in return for a {x.want}</h2>
+              <h3><a href={"mailto:"+x.email}>{x.email}</a></h3>
+              {address.length>=1 ? (<h4>{address[ind]}</h4>): null }
               {x.photo?(<img src={x.photo} alt="itemPhoto" fluid/>):null}
-              <p>name:{x.name}</p>
-              <a href={"mailto:"+x.email}>{x.email}</a>
-              <p>offering:{x.give}</p>
-              <p>in return for:{x.want}</p>
             </Jumbotron>))
     } else {
         return  posts.map((x,ind) =>
