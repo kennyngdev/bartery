@@ -46,7 +46,7 @@ function App() {
     <
     header className = "App-header" >
     <
-    h1 > Bartery < /h1>  < /
+    h1 > <img className="logo" className="logo" width="30" height="30" src="/logo.png" alt="logo"></img> < /h1>  < /
     header > {
       console.log("address", address)
     } < Map currentLocation = {
