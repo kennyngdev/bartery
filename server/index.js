@@ -4,7 +4,6 @@ const { seed } = require("./db_connect");
 const db = require("./db_connect");
 const port= process.env.PORT || 6969;
 const config = require("../knexfile.js");
-
 (async () => {
   try {
     console.log("Running migrations...");

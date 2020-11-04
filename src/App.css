@@ -41,3 +41,14 @@
 .buttons{
   margin:10px;
 }
+
+img{
+height: auto;
+width: 40vh;
+object-fit: cover;
+}
+
+p{
+
+  
+}

@@ -6,7 +6,6 @@ import {
 // import logo from './logo.svg';
 import './App.css';
 import {
-  getStudents,
   getPosts
 } from './utils';
 import UserInput from './components/UserInput';
@@ -16,20 +15,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import getAddress from "./utils/geo.js"
 
 
-
 function App() {
   const [currentLocation, setCurrentLocation] = useState(null);
-  const [students, setStudents] = useState([]);
   const [posts, setPosts] = useState([]);
   const [render, setRender] = useState(false);
   const [address, setAddress] = useState([]);
   const [myPost, setMyPost] = useState([])
   //getting data from database
-  useEffect(() => getStudents().then(data => setStudents(data)), [])
-  useEffect(() => getPosts().then(data => setPosts(data)), [])
+  useEffect(() => getPosts().then(data => setPosts(data)), []) //get post objs from db
   useEffect(() => {
     Promise.all(posts.map(post => getAddress(post.lat, post.lng))).then(posts => setAddress(posts));
-  }, [posts])
+  }, [posts]) //get addresses from db
   useEffect(() => {
     if ("geolocation" in navigator) {
       console.log("geolocation available")
@@ -43,7 +39,7 @@ function App() {
     } else {
       console.log("Not Available");
     }
-  }, []);
+  }, []); //get current location
 
 
   return ( < div className = "App" >
@@ -59,13 +55,7 @@ function App() {
     posts = {
       posts
     }
-    />   <
-    UserInput students = {
-      students
-    }
-    setStudents = {
-      setStudents
-    }
+    /> <UserInput 
     posts = {
       posts
     }
@@ -74,6 +64,9 @@ function App() {
     }
     setMyPost = {
       setMyPost
+    }
+    currentLocation = {
+      currentLocation
     }
     />
 

@@ -1,5 +1,5 @@
-import {useState, useEffect, useRef} from 'react';
-import {addStudents, addPost } from '../utils';
+import {useState, useRef} from 'react';
+import { addPost } from '../utils';
 import Button from 'react-bootstrap/Button';
 import Modal  from 'react-bootstrap/Modal'
 import InputGroup from 'react-bootstrap/InputGroup'
@@ -8,9 +8,10 @@ import FormControl from 'react-bootstrap/FormControl'
 import MailChecker from 'mailchecker'
 
 
-function UserInput ({students,setStudents,myPost,add}) {
+function UserInput ({myPost,currentLocation}) {
 
 const [show, setShow] = useState(false);
+const [file, setFile] = useState(null);
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
   
@@ -18,25 +19,27 @@ const handleShow = () => setShow(true);
   const emailEl = useRef(null);
   const giveEl = useRef(null);
   const wantEl = useRef(null);
+  const imageEl = useRef(null);
+
 
 function submitPost() {
-  console.log(nameEl.current.value);
-  console.log(emailEl.current.value);
-  console.log(giveEl.current.value);
-  console.log(wantEl.current.value);
-
   if(!MailChecker.isValid(emailEl.current.value) || 
     !nameEl.current.value ||
     !giveEl.current.value ||
     !wantEl.current.value){
     console.error('Not a valid mail!');
-    return
+    return;
   }
-
-  addPost({name:nameEl.current.value, 
+  addPost({
+    lat: currentLocation.lat,
+    lng: currentLocation.lng,
+    name:nameEl.current.value, 
     email:emailEl.current.value,
     give:giveEl.current.value,
-    want:wantEl.current.value})
+    want:wantEl.current.value,
+    photo:file,
+  })
+    setShow(false);
 }
 
     return (
@@ -94,7 +97,15 @@ function submitPost() {
                 />
             </InputGroup>
             <Form.Group>
-                <Form.File id="exampleFormControlFile1" label="Upload Photo of your good:" />
+                <Form.File  
+                ref={imageEl}  
+                onChange={e=>{
+                  setFile(e.target.files[0])
+                }} //set file object into state
+                id="exampleFormControlFile1" 
+                label="Upload Photo of your good:"
+                accept="image/png, image/jpeg, image/gif" 
+                webkitdirectory/>
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>

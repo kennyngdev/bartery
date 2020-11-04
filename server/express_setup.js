@@ -8,6 +8,7 @@ const db = require("./db_connect.js");
 const bodyParser = require('body-parser');
 const app = express();
 const methodOverride = require("method-override");
+const {base64_encode} = require("../src/utils/b64.js")
 
 
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
@@ -26,7 +27,6 @@ app.post("/api/students", async (req, res) => {
 });
 
 app.post("/api/posts", async (req, res) => {
-  console.log(req.body)
   db('userpost').insert({
     lat: req.body.lat,
     lng: req.body.lng,

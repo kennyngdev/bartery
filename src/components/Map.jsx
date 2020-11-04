@@ -5,7 +5,9 @@ import Container from 'react-bootstrap/Container';
 
 
 const mapMarkers = (arr) => {
-  if (arr) return arr.map(x=> (<Marker position={{lat:x.lat,lng:x.lng}}/>))
+  if (arr) return arr.map((post,index)=> (<Marker 
+                                onMouseOver={()=>console.log("your are over me")}
+                                position={{lat:post.lat,lng:post.lng}}/>))
   console.log("input",arr)
 }
 
