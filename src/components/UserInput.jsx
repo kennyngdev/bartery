@@ -44,7 +44,7 @@ function submitPost() {
 
     return (
         <>
-        <Button bcClass="buttons"  variant="primary" onClick={handleShow}>
+        <Button bsClass="btn-custom"  variant="primary" onClick={handleShow}>
           Create Your Post!
         </Button>
         
