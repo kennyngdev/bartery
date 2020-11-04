@@ -2,7 +2,7 @@
 require("dotenv").config();
 module.exports = {
   development: {
-    client: 'pg',
+    client: 'postgres',
     connection: {
       host: process.env.DB_HOSTLOCAL || "127.0.0.1",
       database: process.env.DB_NAMELOCAL || "testdb",

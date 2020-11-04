@@ -6,9 +6,11 @@ exports.up = function (knex) {
     table.text("name").notNullable();
     table.text("email").notNullable();
     table.text('photo');
+    table.text("give").notNullable();
+    table.text("want").notNullable();
   });
 };
 
-exports.down = function (knex) {
-
+exports.down = function (knex,promise) {
+  knex.schema.dropTable("userpost")
 };
