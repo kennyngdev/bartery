@@ -1,0 +1,84 @@
+{
+  "name": "bartery",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@aws-amplify/cli": "^4.32.0",
+    "@googlemaps/js-api-loader": "^1.7.0",
+    "@react-google-maps/api": "^1.13.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "base64-img": "^1.0.4",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.3",
+    "canvas_image_processing": "^0.0.5",
+    "chrome-location": "^1.2.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "faker": "^5.1.0",
+    "fetch": "^1.1.0",
+    "fs": "^0.0.1-security",
+    "geocode": "^0.0.3",
+    "geolib": "^3.3.1",
+    "geolocation": "^0.2.0",
+    "google-map-react": "^2.1.9",
+    "install": "^0.13.0",
+    "js-base64": "^3.5.2",
+    "knex": "^0.21.12",
+    "lodash.random": "^3.2.0",
+    "lodash.times": "^4.3.2",
+    "mailchecker": "^3.3.16",
+    "method-override": "^3.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6",
+    "npm": "^6.14.8",
+    "path": "^0.12.7",
+    "pg": "^8.4.2",
+    "postgres": "^1.0.2",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
+    "react-dom": "^17.0.1",
+    "react-geocode": "^0.2.2",
+    "react-geolocated": "^3.1.0",
+    "react-google-maps": "^9.4.5",
+    "react-scripts": "4.0.0",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "node server",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "serve": "node server",
+    "dev": "nodemon server",
+    "migrate": "knex migrate:latest",
+    "makeMigration": "knex migrate:make",
+    "makeSeed": "knex seed:make",
+    "seed": "knex seed:run"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
