@@ -1,28 +1,12 @@
 # Batery
 
-A mobile-friendly web app written by Kenny Ng, 
-who is currently a student from Code Chrysalis who started learning programming 2 months ago.
+A mobile-friendly web item-trading app written by Kenny Ng.
 
-## database
+## Tech Stack
+This project is written in Javascript, with a react front-end and a postgreSQL/RESTful API back-end.
 
-A postgres database is used to store the post informations.
-Knex, express and axios are used to create a REST Api for database integration.
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-starts the serve
-
-### `yarn build`
-
-Builds the app by React-Script
-
-### Deployment
-
-This app is deployed at: [Heroku Link](https://barteryprod.herokuapp.com/)
+Other tech used:
+Express, Knex, Axios, Bootstrap
 
 ### Contact
 Email: kenny01123@gmail.com
