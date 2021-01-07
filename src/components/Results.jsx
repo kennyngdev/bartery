@@ -15,21 +15,19 @@ function Results ({currentLocation,posts, address}) {
     if (currentLocation) {
         return  posts.map((x,ind)=>
           (<Jumbotron>
-              <h2>{distFromCurrentLocation(currentLocation,x.lat,x.lng)}</h2> 
+              {x.photo?(<img src={x.photo} alt="itemPhoto" fluid/>):null}
+              {x.lat&&x.lng?<h2>{distFromCurrentLocation(currentLocation,x.lat,x.lng)}</h2>: null}
               <h2>{x.name} is offering a {x.give} in return for a {x.want}</h2>
               <h3><a href={"mailto:"+x.email}>{x.email}</a></h3>
-              {address.length>=1 ? (<h4>{address[ind]}</h4>): null }
-              {x.photo?(<img src={x.photo} alt="itemPhoto" fluid/>):null}
+              {address && address.length>=1 ? (<h4>{address[ind]}</h4>): null }
             </Jumbotron>))
     } else {
         return  posts.map((x,ind) =>
           (<Jumbotron>
-              <img src={x.photo} alt="itemPhoto" fluid/>
-              {address.length>=1 ? (<p>{address[ind]}</p>): null }
-              <p>name:{x.name}</p>
-              <p>email:{x.email}</p>
-              <p>offering:{x.give}</p>
-              <p>in return for:{x.want}</p>
+              {x.photo?(<img src={x.photo} alt="itemPhoto" fluid/>):null}
+              <h2>{x.name} is offering a {x.give} in return for a {x.want}</h2>
+              <h3><a href={"mailto:"+x.email}>{x.email}</a></h3>
+              {address && address.length>=1 ? (<p>{address[ind]}</p>): null }
             </Jumbotron>))
             } 
           }

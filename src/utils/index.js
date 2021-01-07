@@ -1,6 +1,5 @@
 import axios from "axios";
-import {fs} from 'fs';
-import {base64_encode, getBase64} from './b64'
+import {getBase64} from './b64'
 
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -49,20 +48,27 @@ async function callbackImg(file) {
 }
 
 export async function addPost(obj) {
-  // const imgStr = await Promise.all(getBase64(obj.file)) // this is the base64 string
-  const b64Str= await callbackImg(obj.photo);
-    // const imgSrc= `data:${file.type};base64,${file.b64}`
-  // const imgSrc= `data:${file.type};base64,${file.b64}`;
-    //data:image/jpeg;base64,{b64string}
+  if (obj.photo) {
+    const b64Str= await callbackImg(obj.photo);
+    await axios.post("/api/posts", {
+      lat: obj.lat,
+      lng: obj.lng,
+      name: obj.name,
+      email: obj.email,
+      photo: `data:${obj.photo.type};base64,${b64Str}`,
+      give: obj.give,
+      want: obj.want
+    });
+  } else {
+    await axios.post("/api/posts", {
+      lat: obj.lat,
+      lng: obj.lng,
+      name: obj.name,
+      email: obj.email,
+      give: obj.give,
+      want: obj.want
+    });
+  }
 
-  await axios.post("/api/posts", {
-    lat: obj.lat,
-    lng: obj.lng,
-    name: obj.name,
-    email: obj.email,
-    photo: `data:${obj.photo.type};base64,${b64Str}`,
-    give: obj.give,
-    want: obj.want
-  });
 }
 
