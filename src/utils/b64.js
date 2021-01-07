@@ -1,4 +1,3 @@
-var fs = require('fs');
 
 function getBase64(file) {
     return new Promise((resolve, reject) => {

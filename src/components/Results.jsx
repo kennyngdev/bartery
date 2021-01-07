@@ -2,10 +2,9 @@
 
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import { getDistance } from 'geolib';
+import "../css/Result.css";
 
 function Results ({currentLocation,posts, address}) {
-
-
     function distFromCurrentLocation (current,lat,lng) {
         const result =  getDistance({latitude:current.lat,longitude:current.lng},
                                    {latitude:lat,longitude:lng});
@@ -16,7 +15,7 @@ function Results ({currentLocation,posts, address}) {
         return  posts.map((x,ind)=>
           (<Jumbotron>
               {x.photo?(<img src={x.photo} alt="itemPhoto" fluid/>):null}
-              {x.lat&&x.lng?<h2>{distFromCurrentLocation(currentLocation,x.lat,x.lng)}</h2>: null}
+              {x.lat&&x.lng?<h1>{distFromCurrentLocation(currentLocation,x.lat,x.lng)}</h1>: null}
               <h2>{x.name} is offering a {x.give} in return for a {x.want}</h2>
               <h3><a href={"mailto:"+x.email}>{x.email}</a></h3>
               {address && address.length>=1 ? (<h4>{address[ind]}</h4>): null }
@@ -25,9 +24,9 @@ function Results ({currentLocation,posts, address}) {
         return  posts.map((x,ind) =>
           (<Jumbotron>
               {x.photo?(<img src={x.photo} alt="itemPhoto" fluid/>):null}
-              <h2>{x.name} is offering a {x.give} in return for a {x.want}</h2>
-              <h3><a href={"mailto:"+x.email}>{x.email}</a></h3>
-              {address && address.length>=1 ? (<p>{address[ind]}</p>): null }
+              <h1>{x.name} is offering a {x.give} in return for a {x.want}</h1>
+              <h2><a href={"mailto:"+x.email}>{x.email}</a></h2>
+              {address && address.length>=1 ? (<h3>{address[ind]}</h3>): null }
             </Jumbotron>))
             } 
           }

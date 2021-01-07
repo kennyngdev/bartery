@@ -6,7 +6,6 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import MailChecker from "mailchecker";
-import Jumbotron from "react-bootstrap/Jumbotron";
 
 function UserInput({ posts, setPosts, currentLocation }) {
   const [show, setShow] = useState(false);
@@ -57,18 +56,13 @@ function UserInput({ posts, setPosts, currentLocation }) {
       photo: file,
     };
 
-    // {x.photo?(<img src={x.photo} alt="itemPhoto" fluid/>):null}
-    // {x.lat&&x.lng?<h2>{distFromCurrentLocation(currentLocation,x.lat,x.lng)}</h2>: null}
-    // <h2>{x.name} is offering a {x.give} in return for a {x.want}</h2>
-    // <h3><a href={"mailto:"+x.email}>{x.email}</a></h3>
-    // {address && address.length>=1 ? (<h4>{address[ind]}</h4>): null }
-    await setPosts([newPost, ...posts]);
+    await setPosts([ ...posts, newPost]);
     setShow(false);
   }
 
   return (
     <>
-      <Button bsClass="btn-custom" variant="primary" onClick={handleShow}>
+      <Button size="sm"  variant="primary" onClick={handleShow}>
         Create Your Post!
       </Button>
 

@@ -1,18 +1,21 @@
-import { useState, useEffect, useRef } from "react";
-// import logo from './logo.svg';
-import "./App.css";
+import { useState, useEffect } from "react";
 import { getPosts } from "./utils";
 import UserInput from "./components/UserInput";
 import Map from "./components/Map";
 import Results from "./components/Results";
-import "bootstrap/dist/css/bootstrap.min.css";
 import getAddress from "./utils/geo.js";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [currentLocation, setCurrentLocation] = useState(null);
   const [posts, setPosts] = useState([]);
   const [render, setRender] = useState(false);
   const [address, setAddress] = useState([]);
+  const [view, setView] = useState("map");
+
   //getting data from database
   useEffect(() => getPosts().then((data) => setPosts(data)), []); //get post objs from db
   useEffect(() => {
@@ -39,26 +42,43 @@ function App() {
           {" "}
           <img
             className="logo"
-            width="30"
-            height="30"
             src="/logo.png"
             alt="logo"
           ></img>{" "}
         </h1>{" "}
       </header>{" "}
-      {} <Map currentLocation={currentLocation} posts={posts} />{" "}
+      {}
+      <div className="buttons">
+      <ToggleButtonGroup size="sm" type="radio" name="options" defaultValue={1}>
+        <ToggleButton value={1} onChange={() => setView("map")}>
+          Map View
+        </ToggleButton>
+        <ToggleButton value={2} onChange={() => setView("item")}>
+          Item View
+        </ToggleButton>
+      </ToggleButtonGroup>
       <UserInput
         posts={posts}
         currentLocation={currentLocation}
         setPosts={setPosts}
       />
-      <Results
-        posts={posts}
-        address={address}
-        render={render}
-        setRender={setRender}
-        currentLocation={currentLocation}
-      />{" "}
+      </div>
+      {view === "map" ? (
+        <Map
+          currentLocation={currentLocation}
+          posts={posts}
+          address={address}
+        />
+      ) : null}{" "}
+      {view === "item" ? (
+        <Results
+          posts={posts}
+          address={address}
+          render={render}
+          setRender={setRender}
+          currentLocation={currentLocation}
+        />
+      ) : null}{" "}
     </div>
   );
 }
